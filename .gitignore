@@ -1,0 +1,13 @@
+.idea
+
+venv
+.metadata
+
+__pycache__
+.pyc
+
+fultang/fultang/__pycache__
+fultang/polyclinic/__pycache__
+fultang/polyclinic/sites/__pycache__
+fultang/polyclinic/views/__pycache__
+fultang/polyclinic/migrations/__pycache__

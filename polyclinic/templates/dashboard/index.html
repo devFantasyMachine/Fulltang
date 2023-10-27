@@ -1,0 +1,32 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row clearfix">
+    {%for staff in list %}
+    <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="info-box-4 hover-zoom-effect">
+            <div class="icon"> <i class="zmdi zmdi-account col-blue"></i> </div>
+            <div class="content">
+                <div class="text">{{staff.role}}</div>
+                <div class="number">{{staff.numbers}}</div>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+<br>
+<div class="row clearfix">
+    <div class="col-lg-3 col-md-3 col-sm-6">
+        <div class="info-box-4 hover-zoom-effect">
+            <div class="icon"> <i class="zmdi zmdi-account col-blue"></i> </div>
+            <div class="content">
+                <div class="text">Patients</div>
+                <div class="number">{{  patients.count }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock content%}

@@ -1,0 +1,35 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row clearfix">
+	<div class="text"> <h1>List of all Exams </h1> </div>
+    
+</div>
+
+<br>
+<div class="body">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <th>N°</th>
+                <th>Exam</th>
+                <th>Price</th>
+                <th>Description</th>     
+            </thead>
+            <tbody>
+                {%for exam in list%}
+                <tr>
+                    <td></td>
+                    <td>{{exam.examName}}</td>
+                    <td>{{exam.examCost}}</td>
+                    <td>{{exam.examDescription}}
+                    </td>        
+                </tr>
+                {%endfor%}            
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{%endblock content%}

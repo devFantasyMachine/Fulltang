@@ -1,0 +1,32 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row clearfix">
+	<div class="text"> <h1>List of all Rooms</h1> </div>
+    
+</div>
+
+<br>
+<div class="body">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <th>N°</th>
+                <th>Room</th>
+                <th>Number of Beds</th>           
+            </thead>
+            <tbody>
+                {%for r in list%}
+                <tr>
+                    <td></td>
+                    <td>{{r.roomLabel}}</td>
+                    <td>{{r.beds}}</td>        
+                </tr>
+                {%endfor%}             
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{%endblock content%}

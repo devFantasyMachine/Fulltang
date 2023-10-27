@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+
+<!-- Mirrored from thememakker.com/templates/swift/hospital/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Nov 2021 08:11:15 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>{% block title %} Home{%endblock %} </title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+
+    <link href="{% static 'common/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'common/css/main.css' %}" rel="stylesheet"/>
+    <link href="{% static 'reception/patient.css' %}" rel="stylesheet"/>
+    <link href="{% static 'reception/font-awesome.min.css' %}" rel="stylesheet"/>
+
+
+</head>
+
+<body class="theme-green">
+<!-- Page Loader -->
+<!--<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-cyan">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>-->
+<div class="color-bg-custom"></div>
+
+<div class="p-3">
+    <div class="row mt-5">
+        <div class="col-lg-4  ">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <img alt="Admin" class="rounded-circle p-1 bg-blue"
+                             src="https://bootdey.com/img/Content/avatar/avatar6.png" width="110">
+                        <div class="mt-3">
+                            <h4 class="text-capitalize">{{ patient.firstName }} {{ patient.lastName }}</h4>
+                            <p class="text-secondary mb-1">SEXE : {{ patient.gender }}</p>
+                            <p class="text-secondary mb-1"> CNI : {{ patient.cniNumber }}</p>
+                            <p class="text-secondary mb-1"> Email : {{ patient.email }}</p>
+                            <p class="text-secondary mb-1"> Address : {{ patient.address }}</p>
+                            <p class="text-secondary mb-1"> Birth Date : {{ patient.birthDate }}</p>
+                            <p class="text-muted font-size-sm"> Add at:{{ patient.addTime }},{{ patient.addDate }}</p>
+
+
+                            {% if user.role == "Receptionist" or user.role == "Admin" %}
+
+                            <button class="btn btn-primary" data-target="#updateModal" data-toggle="modal">Update
+                            </button>
+
+                            {% endif %}
+
+                            {% if user.role == "Receptionist" or user.role == "Admin" or user.role == "Doctor" %}
+
+                            <button class="btn btn-outline-primary">Medical Folder</button>
+
+                            {% endif %}
+
+                            {% if user.role == "Nurse" or user.role == "Doctor" %}
+
+                            <button class="btn btn-primary ml-2" data-target="#paramModal" data-toggle="modal">Add
+                                Params
+                            </button>
+
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Height</h6>
+                            <span class="text-secondary">{{parameters.height}} cm</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Weight</h6>
+                            <span class="text-secondary">{{parameters.weight}} Kg</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Arterial Pressure</h6>
+                            <span class="text-secondary">{{parameters.arterialPressure}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Skin Appearance</h6>
+                            <span class="text-secondary">{{parameters.skinAppearance}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0">Glycemie</h6>
+                            <span class="text-secondary">10</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0 font-weight-bold">Condition</h6>
+
+                            {% if patient.condition == "Critical" %}
+
+                            <span class=" font-weight-bold text-danger">{{patient.condition}}</span>
+
+                                {% if user.role == "Doctor" or user.role == "Receptionist" %}
+
+                                <label class="switch2">
+                                    <input class="toggleCondition" data-whatever={{patient.pk}} type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+
+                                {% endif %}
+
+                            {% else %}
+
+                            <span class=" font-weight-bold text-primary">{{patient.condition}}</span>
+
+                                {% if user.role == "Doctor" %}
+
+
+                                <label class="switch2">
+                                    <input checked class="toggleCondition" data-whatever={{patient.pk}} type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+
+
+                                {% endif %}
+
+                            {% endif %}
+
+
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0  font-weight-bold">Is Hospitalized</h6>
+
+
+                            {% if  current_hosp  != None %}
+
+
+                            <span class="text-secondary text-danger">Yes, {{ current_hosp.bedLabel}}({{current_hosp.atTime}} {{current_hosp.atDate}})</span>
+
+                            {% endif %}
+
+                            {% if user.role == "Receptionist" %}
+                            <button class="btn btn-primary mt-4 mb-4" id="removeHospitalisation" data-whatever={{current_hosp.pk}}
+                                     >Leave
+                            </button>
+                            {% endif %}
+
+
+                            {% if  current_hosp  == None %}
+
+                            <span class="text-secondary">No</span>
+
+                                {% if user.role == "Receptionist" %}
+
+                                <button class="btn btn-primary mt-4 mb-4" data-target="#hospitalisationModal"
+                                        data-toggle="modal">Make Hospitalisation
+                                </button>
+
+                                {% endif %}
+
+
+                            {% endif %}
+
+
+                            {% if user.role == "Doctor" and  current_hosp  == None %}
+
+                            <button class="btn btn-primary mt-4 mb-4" data-target="#requesthospitalisationModal"
+                                    data-toggle="modal">Hospitalisation Request
+                            </button>
+
+                            {% endif %}
+
+
+                        </li>
+                    </ul>
+                    <div class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0  font-weight-bold">Last Modification</h6>
+                        <span class="text-secondary">{{parameters.addDate}}
+
+                               {%for staff in staffs %}
+
+                                        {%if parameters.idMedicalStaff.pk == staff.pk  %}
+
+                                            {%if staff.gender == "Male"  %}
+
+                                            <span class="text font-weight-bold">By Mr.  {{staff.first_name}} {{staff.last_name}} ( {{staff.role}} )</span>
+
+                                            {%else%}
+
+                                            <span class="text font-weight-bold">By Mme.  {{staff.first_name}} {{staff.last_name}} ( {{staff.role}} )</span>
+
+                                            {%endif%}
+                                        {%endif%}
+
+                                    {%endfor%}
+
+
+
+                           </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8  ">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="d-flex align-items-center mb-3">Appointments</h5>
+                            <hr>
+                            {% for app in appointments %}
+
+
+                            <p>{{app.atDate}} {{app.reason}} {{app.requirements}}</p>
+
+                            {% endfor %}
+
+                            {% if user.role == "Doctor" %}
+
+                            <button class="btn btn-primary mt-4" data-target="#appointmentModal" data-toggle="modal">
+                                Take Appointment
+                            </button>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if user.role == "Receptionist" or user.role == "Admin" %}
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="d-flex align-items-center mb-3">Manage Access</h5>
+                            <hr>
+                            <table>
+                                <tbody>
+                                {%for access in all_access %}
+                                <tr>
+                                    <td>Given At : {{access.givenAt}}</td>
+                                    <td>MedicalStaff :
+
+                                        {%for staff in staffs %}
+
+                                        {%if access.idMedicalStaff.pk == staff.pk %}
+
+                                        {%if staff.gender == "Male" %}
+
+                                        <span> Mr.   {{staff.first_name}} {{staff.last_name}} ( {{staff.role}} )</span>
+
+                                        {%else%}
+
+
+                                        <span>Mme.     {{staff.first_name}} {{staff.last_name}} ( {{staff.role}} )</span>
+
+                                        {%endif%}
+                                        {%endif%}
+
+                                        {%endfor%}
+
+                                    </td>
+
+                                    <td>
+                                        <button class="btn  btn-link btn-warning ml-2 removeAccess"
+                                                data-whatever="{{access.pk}}"
+                                        >Remove
+                                        </button>
+
+                                    </td>
+                                </tr>
+                                {%endfor%}
+                                </tbody>
+                            </table>
+
+                            <button class="btn btn-base mt-5" data-target="#accessModal" data-toggle="modal"
+                                    type="submit">ADD ACCESS
+                            </button>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {% endif %}
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="d-flex align-items-center mb-3">Historical</h5>
+                            <form class="search-form">
+                                <div class="row ml-2 ">
+                                    <div class="col-lg-5 col-md-6 col-sm-12 p-0">
+                                        <input class="form-control" id="searchTo" name="search"
+                                               placeholder="From..." type="date" value="{{patient.addDate}}">
+                                    </div>
+                                    <div class="col-lg-5 col-md-6 col-sm-12 p-0 ml-3">
+                                        <input class="form-control" id="searchFrom" name="search" placeholder="To..."
+                                               type="date">
+                                    </div>
+                                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                                        <button class="btn btn-base" type="submit">
+                                            <svg class="feather feather-search" fill="none" height="24"
+                                                 stroke="currentColor"
+                                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                 viewBox="0 0 24 24"
+                                                 width="24" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="11" cy="11" r="8"></circle>
+                                                <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                            <hr class="my-4">
+                            <h6 class="d-flex align-items-center mb-3">Consultations </h6>
+
+                            <hr class="">
+
+                            {% if user.role == "Doctor" or user.role == "Receptionist" %}
+
+
+                                {%for cons in consultations %}
+
+                                <p value="{{cons.pk}}">Reason : {{cons.consultationReason}} Note :
+                                    {{cons.consultationNotes}}, Allergy :
+                                    {{cons.allergy}}, Previous History :{{cons.previousHistory}}, Status : {{cons.status}},
+                                    Type :
+
+                                    {%for type in consultationsTypes %}
+
+                                    {% if type.pk == cons.idConsultationType.pk %}
+
+                                    {{type.name}}
+                                    {%endif%}
+
+
+                                    {%endfor%}
+
+
+                                </p>
+
+
+                                {%endfor%}
+
+                            {% endif %}
+
+                            {% if user.role == "Doctor" %}
+
+
+                            <button class="btn btn-primary mt-4 mb-4" data-target="#consultationModal"
+                                    data-toggle="modal">Make Consultation
+                            </button>
+
+
+                            {% endif %}
+
+                            <h6 class="d-flex align-items-center mb-3">Hospitalisations</h6>
+                            <hr class="">
+
+                            {% for hosp in hospitalisations %}
+
+                            <p>{{hosp.atTime}}, {{hosp.atDate}} Bed : {{hosp.bedLabel}} By {{hosp.note}}
+                                {% if not hosp.isActive  %}, Remove At : {{hosp.removeAt}} {% endif %}
+
+                            </p>
+
+                            {% endfor %}
+
+                            <h6 class="d-flex align-items-center mb-3">Prescription</h6>
+                            <hr class="">
+                            {% for presc in prescriptions %}
+
+
+                            <p>{{presc.addTime}}, {{presc.addDate}} Dose : {{presc.dose}} By
+
+                                   {%for staff in staffs %}
+
+                                {%if presc.idMedicalStaff.pk == staff.pk %}
+
+                                {%if staff.gender == "Male" %}
+
+                                <span> Mr.   {{staff.first_name}} {{staff.last_name}} ( {{staff.role}} )</span>
+
+                                {%else%}
+
+
+                                <span>Mme.     {{staff.first_name}} {{staff.last_name}} ( {{staff.role}} )</span>
+
+                                {%endif%}
+                                {%endif%}
+
+                                {%endfor%}
+
+                            </p>
+
+                            {% endfor %}
+
+
+                            {% if user.role == "Doctor" %}
+
+                            <button class="btn btn-primary mt-4 mb-4" data-target="#prescriptionModal"
+                                    data-toggle="modal">Make Prescription
+                            </button>
+
+                            {% endif %}
+
+                            <h6 class="d-flex align-items-center mb-3">Exams</h6>
+
+                            <span class="d-flex align-items-center mb-3">REQUEST</span>
+                            <hr class="">
+                            {% for exam in examRequest %}
+
+
+                            <p>{{exam.addTime}}, {{exam.addDate}} Note : {{exam.notes}}, Details : {{exam.examDetails}} By
+
+                                {%for staff in staffs %}
+
+                                {%if exam.idMedicalStaff.pk == staff.pk %}
+
+                                {%if staff.gender == "Male" %}
+
+                                <span> Mr.   {{staff.first_name}} {{staff.last_name}} ( {{staff.role}} )</span>
+
+                                {%else%}
+
+
+                                <span>Mme.     {{staff.first_name}} {{staff.last_name}} ( {{staff.role}} )</span>
+
+                                {%endif%}
+                                {%endif%}
+
+                                {%endfor%}
+
+
+                            </p>
+
+                            {% endfor %}
+
+                            <span class="d-flex align-items-center mb-3">RESPONSE</span>
+                            <hr class="">
+
+                            {% for exam in examsResult %}
+
+
+                            <p>{{exam.addTime}}, {{exam.addDate}} Note : {{exam.notes}}
+                                By
+
+                                {% for staff in staffs %}
+
+                                                            {% if staff.pk == exam.idMedicalStaff.pk %}
+                                                             {{staff.first_name}} {{staff.last_name}}
+
+                                                            {% endif %}
+
+                                                            {% endfor %}
+
+
+                                 </p>
+
+                            {% endfor %}
+
+
+                            {% if user.role == "Doctor" %}
+
+                            <button class="btn btn-primary mt-4 mb-4" data-target="#examModal" data-toggle="modal">Make
+                                Exams Request
+                            </button>
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="hospitalisationModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centere" role="document">
+        <div class="modal-content">
+            <div class="card-header modal-header">
+                <h5 class="modal-title">Make Hospitalisation</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body card">
+                <div class="card-body">
+
+                    <form data-whatever={{patient.pk}} id="makeHospitalisation">
+                        {%csrf_token%}
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Bed Label </h6>
+                            </div>
+                            <div class="col-lg-9 text-secondary">
+                                <input class="form-control" name="bedLabel" type="text" value=""></input>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Room </h6>
+                            </div>
+                            <div class="col-lg-9 text-secondary">
+                                <select class="col-sm-8 text-secondary" name="room">
+                                    {%for room in rooms %}
+                                    <option value="{{room.pk}}">{{room.roomLabel}} (
+                                        {{room.busyBeds}}/{{room.beds}} )
+                                    </option>
+                                    {%endfor%}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Note </h6>
+                            </div>
+                            <div class="col-lg-9 text-secondary">
+                                <textarea class="form-control" name="note" type="" value=""></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="btn btn-primary px-4" type="submit" value="Save Changes">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="paramModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centere" role="document">
+        <div class="modal-content">
+            <div class="card-header modal-header">
+                <h5 class="modal-title">Add Param</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body card">
+                <div class="card-body">
+
+                    <form data-whatever={{patient.pk}} id="addParam">
+                        {%csrf_token%}
+
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Weight</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="weight" placeholder="Kg" type="number" value="">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Height</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="height" placeholder="Cm" type="number" value="">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Temperature</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="temperature" placeholder="Celsius" type="number"
+                                       value="">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Arterial Pressure</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="arterialPressure" type="number" value="">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Skin Appearance</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="skinAppearance" type="text" value="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="btn btn-primary px-4" type="submit" value="Save Changes">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="examModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centere" role="document">
+        <div class="modal-content">
+            <div class="card-header modal-header">
+                <h5 class="modal-title">Exam Request</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body card">
+                <div class="card-body">
+
+                    <form data-whatever={{patient.pk}} id="addExamRequest">
+                        {%csrf_token%}
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Notes</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <textarea class="form-control" name="notes" placeholder="RAS"
+                                          value=""></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Exam Details</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="examDetails" placeholder="RAS" type="text" value="">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Exam</h6>
+                            </div>
+
+
+                            <div class="col-sm-9 text-secondary">
+
+                                <select class="col-sm-8 text-secondary" name="exam">
+                                    {%for exam in exams %}
+                                    <option value="{{exam.pk}}">{{exam.examName}} ( {{exam.examCost}} FCFA )
+                                    </option>
+                                    {%endfor%}
+                                </select>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="btn btn-primary px-4" type="submit" value="Save Changes">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="consultationModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centere" role="document">
+        <div class="modal-content">
+            <div class="card-header modal-header">
+                <h5 class="modal-title">Make Consultation</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body card">
+                <div class="card-body">
+
+                    <form data-whatever={{patient.pk}} id="makeConsultation">
+                        {%csrf_token%}
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Consultation Reason</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="consultationReason" placeholder="" type="text"
+                                       value="">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Consultation Notes</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <textarea class="form-control" name="consultationNotes" placeholder=""
+                                          value=""></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Allergy</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <textarea class="form-control" name="allergy" placeholder=""
+                                          value=""></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Previous History</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <textarea class="form-control" name="previousHistory"   value=""></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Consultation Type</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+
+                                <select class="col-sm-8 text-secondary" name="type">
+                                    {%for type in consultationsTypes %}
+                                    <option value="{{type.pk}}">{{type.name}} ( {{type.price}} FCFA )
+                                    </option>
+                                    {%endfor%}
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Status</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="status" type="text" value="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="btn btn-primary px-4" type="submit" value="Save Changes">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="accessModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-md modal-dialog-centere" role="document">
+        <div class="modal-content">
+            <div class="card-header modal-header">
+                <h5 class="modal-title">Add Access</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body card">
+                <div class="card-body">
+                    <form data-whatever={{patient.pk}} id="add_access">
+                        {%csrf_token%}
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Staff</h6>
+                            </div>
+
+                            <select class="col-sm-8 text-secondary" name="idMedicalStaff">
+                                {%for staff in staffs %}
+                                <option value="{{staff.pk}}">{{staff.first_name}} {{staff.last_name}} ( {{staff.role}}
+                                    )
+                                </option>
+                                {%endfor%}
+                            </select>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="btn btn-primary px-4" type="submit" value="Save Changes">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="appointmentModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centere" role="document">
+        <div class="modal-content">
+            <div class="card-header modal-header">
+                <h5 class="modal-title">Take Appointment</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body card">
+                <div class="card-body">
+
+                    <form data-whatever={{patient.pk}} id="addAppointment">
+                        {%csrf_token%}
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">At Date</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="atDate" min={% now "Y-m-d" %} type="date" value="">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">At Time</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="AtTime" type="time" value="">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Reason</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="reason" placeholder="Consultation" type="text"
+                                       value="">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Requirements</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" name="requirements" type="text" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="btn btn-primary px-4" type="submit" value="Save Changes">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="prescriptionModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centere" role="document">
+        <div class="modal-content">
+            <div class="card-header modal-header">
+                <h5 class="modal-title">Make Prescription</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body card">
+                <div class="card-body">
+
+                    <form data-whatever={{patient.pk}} id="addPrescription">
+                        {%csrf_token%}
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Dose </h6>
+                            </div>
+                            <div class="col-lg-9 text-secondary">
+                                <textarea class="form-control" name="dose" type="" value=""></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="btn btn-primary px-4" type="submit" value="Save Changes">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="requesthospitalisationModal"
+     role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centere" role="document">
+        <div class="modal-content">
+            <div class="card-header modal-header">
+                <h5 class="modal-title">Hospitalisation Request</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body card">
+                <div class="card-body">
+
+                    <form data-whatever={{patient.pk}} id="addHospitalisationRequest">
+                        {%csrf_token%}
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Note </h6>
+                            </div>
+                            <div class="col-lg-9 text-secondary">
+                                <textarea class="form-control" name="message" type="" value=""></textarea>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="btn btn-primary px-4" type="submit" value="Save Changes">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="updateModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centere" role="document">
+        <div class="modal-content">
+            <div class="card-header modal-header">
+                <h5 class="modal-title" id="addModalLabel">Update Patients</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body card">
+                <div class="card-body">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">First Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" type="text" value="{{ patient.firstName }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Last Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" type="text" value="{{ patient.lastName }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" type="text" value="{{ patient.email }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Phone</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" type="text" value="{{ patient.phoneNumber }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Address</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="form-control" type="text" value="{{ patient.address }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3"></div>
+                            <div class="col-sm-9 text-secondary">
+                                <input class="btn btn-primary px-4" type="submit" value="Save Changes">
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static 'reception/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'reception/patient.js' %}"></script>
+<script src="{% static 'common/js/bootstrap.min.js' %}"></script>
+
+</body>
+
+<!-- Mirrored from thememakker.com/templates/swift/hospital/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Nov 2021 08:11:50 GMT -->
+</html>

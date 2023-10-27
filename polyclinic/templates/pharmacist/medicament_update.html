@@ -1,0 +1,54 @@
+{%load static %}
+<link rel="stylesheet" href="{% static 'staff_registration.css' %}">
+
+<nav>
+    <a href="/pharmacist/get_add_medicament">Add Medecine</a>
+    <a href="/pharmacist/medicament_list">Medecine List</a>
+</nav>
+    <div>
+        <div><h1>Updating {{medicament.medicamentName}}</h1></div>
+
+        <form method ="post" class="post-form" action="/pharmacist/update/{{medicament.id}}">
+            <fieldset>
+                {%csrf_token%}
+                <div style="display: flex; width: 100%;">
+                    <div style="width: 33%; display: flex; flex-direction: column;">
+                        <label for="staff_id">Medicament_id</label>
+                        <br> <input type="text" value="{{medicament.id}}" name ="id" disabled="true">
+                        
+                        <div>Medicament Name</div>        
+                        <div><input type="text" value="{{medicament.medicamentName}}" name="name" maxlength="50" style="margin-bottom: 5vh;" required="" id="id_username"></div>
+                        
+                        <div>Price</div>        
+                        <div><input type="text" value="{{medicament.medicamentCost}}" name="cost" maxlength="50" style="margin-bottom: 5vh;" required="" id="id_FirstName"></div>
+                        
+                        <div>Quantity</div>
+                        <div><input type="text" value="{{medicament.quantity}}" name="quantity" maxlength="50" style="margin-bottom: 5vh;" required></div>
+                        
+                        <div>Expiry Date</div>
+                        <div><input type="date" value="{{medicament.expiryDate}}" name="expiry" maxlength="50" style="margin-bottom: 5vh;"  required></div>
+                        
+                        <div>Status</div>
+                        <div>
+                            <select value = "{{medicament.status}}" name="status" style="width: 11.68vw; height: 4.5vh; margin-bottom: 5vh;" >
+                                <option value="valid">Valid</option>
+                                <option value="invalid">Invalid</option>
+                            </select>
+                        </div>
+
+                        <div>Description</div>
+                        <div>
+                            <input type="text" value = "{{medicament.description}}" name="description" maxlength="50" style="margin-bottom: 5vh;" required >
+                        </div>
+
+                        <div style="width: 33%; display: flex; flex-direction: row; margin-top: 50px;">
+                            <div><input type="submit" class="save" value="Save"></div>
+                            <div><input type="reset" value="Resest"></div>
+                        </div>
+                    </div>
+                    
+                </div> 
+            </fieldset>
+        </form>
+    </div>
+

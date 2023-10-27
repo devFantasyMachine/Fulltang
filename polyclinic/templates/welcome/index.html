@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+
+<!-- Mirrored from thememakker.com/templates/swift/hospital/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Nov 2021 08:11:15 GMT -->
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<title>{% block title %} Home{%endblock %} </title>
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="{% static 'common/plugins/bootstrap/css/bootstrap.min.css' %}"/>
+<!--
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css">
+-->
+<link rel="stylesheet" href="{% static 'common/plugins/morrisjs/morris.css' %}"/>
+<!-- Custom Css -->
+<link rel="stylesheet" href="{% static 'common/css/main.css' %}"/>
+<link rel="stylesheet" href="{% static 'common/css/mystyle.css' %}"/>
+
+</head>
+
+<body class="theme-green">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-cyan">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+
+<div class="color-bg-custom"></div>
+
+    <div class="presentation">
+
+        <div class="card">
+            <h1 class="title"><span>Welcome On FulTang</span></h1>
+
+            <p class="description m-l-20 m-r-20 m-t-20">
+                Polyclinic fultang is a hospital management application,
+                providing care and monitoring of patients from arrival to discharge,
+                this via the platform. We first register the patient at the reception level,
+                then follow the chain of follow-up according to his problem or his situation.
+                Polyclinic Fultang has several departments namely the dental service,
+                the ophthalmological service, the general medicine, the laboratory, as well as a pharmacy.
+            </p>
+
+
+
+            <p class="m-l-20  m-t-10">Cette page est l'interface de connexion du personnel de la clinique</p>
+
+            <div class="pb">
+                 <hr>
+                <a class="m-l-20 m-t-10" href="signal-pb.html">Notify a problem</a>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+<div class="authentication">
+
+    <div class="container">
+        <div class="card-top"></div>
+        <div class="card">
+            <h1 class="title">Login <span class="msg">Sign in to start your session</span></h1>
+                   <a class="m-l-20" href="forgot-password.html">Forgot Password?</a>
+            <div class="body">
+                <form action="/" method="post">
+                    <div class="input-group icon before_span">
+                        <span class="input-group-addon"> <i class="zmdi zmdi-account"></i> </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group icon before_span">
+                        <span class="input-group-addon"> <i class="zmdi zmdi-lock"></i> </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="">
+                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                            <label for="rememberme">Remember Me</label>
+                        </div>
+                        <div class="text-center" style="margin-left:50%">
+
+                            {% if error == True %}
+
+                                <span class="text text-secondary text-danger">Error with login : {{username}} don't exists</span>
+
+                            {%endif%}
+
+
+                            <input type="submit" value="SIGN IN" class="btn btn-raised waves-effect g-bg-cyan">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<span style="color:white;"> Copyright (c) FullTang 2022. </span>
+
+
+<!-- Jquery Core Js -->
+<script src="{% static 'common/bundles/libscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+<script src="{% static 'common/bundles/vendorscripts.bundle.js' %}"></script> <!-- Lib Scripts Plugin Js -->
+
+<script src="{% static 'common/bundles/chartscripts.bundle.js' %}"></script> <!-- Chart Plugins Js -->
+<script src="{% static 'common/bundles/sparklinescripts.bundle.js' %}"></script> <!-- Chart Plugins Js -->
+
+<script src="{% static 'common/bundles/mainscripts.bundle.js' %}"></script><!-- Custom Js -->
+<script src="{% static 'common/js/pages/index.js' %}"></script>
+<script src="{% static 'common/js/pages/charts/sparkline.min.js' %}"></script>
+<script src="{% static 'common/custom.js' %}"></script>
+</body>
+
+</body>
+<!-- Mirrored from thememakker.com/templates/swift/hospital/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Nov 2021 08:11:50 GMT -->
+</html>

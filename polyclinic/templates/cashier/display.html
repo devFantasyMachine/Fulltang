@@ -1,0 +1,42 @@
+{%load static %}
+<link rel="stylesheet" href="{% static 'common/css/staff_list.css' %}">
+<div><button onclick="window.print()"></button>print consultation</div>
+<nav>
+    
+    <h1>Consultation N°: {{consultation.id}}</h1>
+    <h1>Doctor: {{staff.first_name}}</h1>
+    <h1>Date : {{consultation.consultationDate}} </h1>
+    <h1>Time : {{consultation.consultationTime}} </h1>
+    <h1>Type : {{type.name}} </h1>
+    <h1>Amount : {{consultation.consultationCost}} </h1>
+
+</nav>
+<div>
+    Patient Informations
+        <h2> First Name : {{patient.firstName}} </h2>
+        <h2> Last Name : {{patient.lastName}} </h2>
+        <h2> Gender : {{patient.gender}} </h2>
+        <h2> Birth date : {{patient.birthDate}} </h2>
+        <h2> Tel : {{patient.phoneNumber}} </h2>
+        <h2> Address : {{patient.address}} </h2>
+</div>
+<div>
+    Consultation details
+    <h2>Reason : {{consultation.consultationReason}} </h2>
+    <h2>Notes : {{consultation.consultationNotes}} </h2>
+    <h2>Allergy : {{consultation.allergy}} </h2>
+    <h2>Previous History : {{consultation.previousHistory}} </h2>
+    
+</div>
+<div>
+    List of parameters
+        <h2> Date : {{param.addDate}} </h2>
+        <h2> Time : {{param.addTime}} </h2>
+        <h2> Weight : {{param.weight}} </h2>
+        <h2> Height: {{param.height}} </h2>
+        <h2> Temperature : {{param.temperature}} </h2>
+        <h2> Presure : {{param.arterialPressure}} </h2>
+        <h2> Appearance: {{param.skinAppearance}} </h2>
+
+</div>
+

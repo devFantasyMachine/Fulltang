@@ -1,0 +1,127 @@
+.welcome {
+    text-align: center;
+    position: relative;
+    top: 100px;
+}
+.custom-text {
+    font-size: 20px;
+    color: rgb(175, 200, 221);
+}
+
+.custom-login {
+    text-align: center;
+    position: relative;
+    top: 300px;
+    
+}
+
+
+.description {
+
+ font-size: 18px;
+  font-weight: 400;
+  text-align : center;
+  padding: 20px;
+
+}
+
+.presentation{
+
+  max-width: 660px;
+  margin: 5% auto;
+  margin-left: 40px;
+  overflow-x: hidden;
+  background-size: cover;
+}
+
+
+
+.presentation .card {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background: #fff;
+  position: absolute;
+  padding: 20px 0;
+  height: 80%;
+   width: 55%;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+.presentation .card .title {
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  margin: 0 0 25px;
+  padding: 60px 0 10px 30px;
+  color: #01c0c8;
+  text-align : center;
+  text-transform: uppercase;
+}
+
+.presentation .card .pb {
+  position: absolute;
+  width:100%;
+  display: inline-block;
+  bottom : 15px;
+  left : 0px;
+  margin-bottom: 10px;
+}
+
+.presentation .card .title span {
+  font-weight: 400;
+  color: #424242;
+  display: block;
+  line-height: 18px;
+}
+.presentation .card .title .msg {
+  font-weight: 400;
+  color: #757575;
+  display: block;
+  line-height: 18px;
+  text-transform: none;
+}
+.presentation .locked .thumb {
+  float: left;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.presentation .locked .thumb .media-object {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  width: 50px;
+}
+.presentation .locked .media-heading {
+  display: block;
+}
+.presentation .locked .media-heading strong {
+  font-weight: 400;
+}
+.presentation .card-top:first-child {
+  background: #fafafa;
+  height: 10px;
+  border-radius: 5px 5px 0 0;
+  margin: 0 10px;
+}
+.presentation .form-line .search-btn {
+  display: inline-block;
+  position: absolute;
+  right: 50px;
+  top: 0;
+}
+.presentation .form-line .search-btn button {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  box-shadow: none;
+}
+
+
+

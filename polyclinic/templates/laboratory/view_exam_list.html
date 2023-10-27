@@ -1,0 +1,59 @@
+{% extends 'laboratory/baseLaboratory.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<br> <br>
+    <span style="text-decoration: solid;">Patient List...</span>
+
+<form style="text-align: center;" action="" method="POST">
+    {% csrf_token %}
+    <label for="">Name</label>
+    <input name='name' type="text" value="{{selectName}}">
+    <button>🔍</button>
+    <hr>
+</form>
+
+
+    <div style= "padding: 1%; margin-top: 5vh; margin-left: 5vh;">
+
+        <div style="display: flex;">
+            <div style="width: 33%;"><h6>Patient_Name</h6></div>
+            <div style="width: 33%;"><h6>Details of exam</h6></div>
+            <div style="width: 33%;"><h6>Notes</h6></div>
+            <div style="width: 33%;"><h6>Action</h6></div>
+            <div style="width:33% ;"><h6>Validation</h6></div>
+        </div>
+
+        {% for m in exams %}
+        <form method="post" action="examresult/{{m.idPatient.pk}}">
+            {% csrf_token %}
+            <div style="display: flex;">
+                <div style="display: flex; width:100%">
+                    <div style="width: 33%;">{{m.idPatient}}</div>
+
+
+                                <div style="width: 35%;"> {{m.examDetails}} </div>
+                                <div style="width: 33%;"><h6> {{m.notes}} </h6></div>
+                                <div style="width: 33%;">
+                                    <select name="{{m.id}}" id="">
+                                            <option value="invalid">invalid</option>
+                                            <option value="valid">valid</option>
+                                    </select>
+                                </div>
+                                <div style="width: 37%;">
+                                    <input type="submit" value="Valid">
+                                </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+        {% endfor %}
+        <hr>
+    </div>
+
+{% endblock content %}

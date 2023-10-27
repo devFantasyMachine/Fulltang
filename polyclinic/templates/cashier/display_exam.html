@@ -1,0 +1,30 @@
+{%load static %}
+<link rel="stylesheet" href="{% static 'common/css/staff_list.css' %}">
+<div><button onclick="window.print()"></button>print Exam</div>
+<nav>
+    <h1>Exam N°: {{examRequest.id}}</h1>
+    <h1>Doctor: {{staff.first_name}}</h1>
+    <h1>Date : {{examRequest.addDate}} </h1>
+    <h1>Time : {{examRequest.addTime}} </h1>
+    <h1>Type : {{exam.examName}} </h1>
+    <h1>Amount : {{exam.examCost}} </h1></nav>
+
+<div>
+    Patient Informations
+        <h2> First Name : {{patient.firstName}} </h2>
+        <h2> Last Name : {{patient.lastName}} </h2>
+        <h2> Gender : {{patient.gender}} </h2>
+        <h2> Birth date : {{patient.birthDate}} </h2>
+        <h2> Tel : {{patient.phoneNumber}} </h2>
+        <h2> Address : {{patient.address}} </h2>
+</div>
+<div>
+    Exam details
+    <h2>Details : {{examRequest.examDetails}} </h2>
+    <h2>Notes : {{examRequest.notes}} </h2>
+    <h2>Exam Status : {{examRequest.examStatus}} </h2>
+    <h2>Patient Status : {{examRequest.patientStatus}} </h2>
+    
+</div>
+
+

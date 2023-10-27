@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>{% block title %} Home{%endblock %} </title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+
+
+    <link href="{% static 'common/css/main.css' %}" rel="stylesheet"/>
+    <link href="{% static 'reception/style.css' %}" rel="stylesheet"/>
+
+    <link href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'https://fonts.googleapis.com/icon?family=Material+Icons' %}" rel="stylesheet"
+          type="text/css">
+
+    <!-- Custom Css -->
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet"/>
+
+
+</head>
+
+<body class="theme-cyan">
+
+<!-- Page Loader -->
+<!--
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-cyan">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+-->
+
+<ul class="mfbc-br mfb-zoomin" data-mfb-toggle="hover" id="f-menu">
+    <li class="mfbc_wrap">
+        <a class="mfbcb-main g-bg-cyan" href="javascript:void(0);">
+            <i class="mfbcm-icon-resting zmdi zmdi-plus"></i>
+            <i class="mfbcm-icon-active zmdi zmdi-close"></i>
+        </a>
+        <ul class="mfbc_list">
+            <li><a class="mfb-child bg-blue" data-mfb-label="Add Patient" data-target="#addModal" data-toggle="modal"
+                   href="#"><i
+                    class="zmdi zmdi-plus mfbc_icon"></i></a></li>
+            <li><a class="mfb-child bg-orange" data-mfb-label="view exams history" href="#"><i
+                    class="zmdi zmdi-calendar mfbc_icon"></i></a></li>
+            <li><a class="mfb-child bg-purple" data-mfb-label="sign-out" href="#"><i
+                    class="zmdi zmdi-sign-in mfbc_icon"></i></a></li>
+            <li><a class="mfb-child bg-blue" data-mfb-label="view exam list" href="#"><i
+                    class="zmdi zmdi-view-list-alt mfbc_icon"></i></a></li>
+            <li><a class="mfb-child bg-orange" data-mfb-label="view exams history" href="#"><i
+                    class="zmdi zmdi-calendar mfbc_icon"></i></a></li>
+        </ul>
+    </li>
+</ul>
+
+
+<!-- Top Bar -->
+<nav class="navbar clearHeader">
+    <div class="col-12">
+        <span class="navbar-brand navbar-left ml-4" style=" ">Fultang Hospital</span>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="javascript:void(0);" data-target="#chatModal" data-toggle="modal" title="Go to Inbox"><i class="zmdi zmdi-email"></i></a></li>
+            <li><a href="profile.html" title="Go to Profile"><i class="zmdi zmdi-account"></i></a></li>
+
+            <!-- Notifications -->
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"
+                                    role="button"><i class="zmdi zmdi-notifications"></i> <span
+                    class="label-count">7</span> </a>
+                <ul class="dropdown-menu">
+                    <li class="header">NOTIFICATIONS</li>
+                    <li class="body">
+                        <ul class="menu">
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-light-green"><i class="zmdi zmdi-account-add"></i></div>
+                                    <div class="menu-info">
+                                        <h4>12 new members joined</h4>
+                                        <p><i class="material-icons">access_time</i> 14 mins ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-cyan"><i class="zmdi zmdi-shopping-cart-plus"></i></div>
+                                    <div class="menu-info">
+                                        <h4>4 sales made</h4>
+                                        <p><i class="material-icons">access_time</i> 22 mins ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-red"><i class="zmdi zmdi-delete"></i></div>
+                                    <div class="menu-info">
+                                        <h4><b>Ngome</b> deleted account</h4>
+                                        <p><i class="material-icons">access_time</i> 3 hours ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-orange"><i class="zmdi zmdi-edit"></i></div>
+                                    <div class="menu-info">
+                                        <h4><b>Christian</b> changed name</h4>
+                                        <p><i class="material-icons">access_time</i> 2 hours ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-blue-grey"><i class="zmdi zmdi-comment-alt-text"></i>
+                                    </div>
+                                    <div class="menu-info">
+                                        <h4><b>Alex</b> commented your post</h4>
+                                        <p><i class="material-icons">access_time</i> 4 hours ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-light-green"><i class="zmdi zmdi-refresh-alt"></i></div>
+                                    <div class="menu-info">
+                                        <h4><b>Guidado</b> updated status</h4>
+                                        <p><i class="material-icons">access_time</i> 3 hours ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-purple"><i class="zmdi zmdi-settings"></i></div>
+                                    <div class="menu-info">
+                                        <h4>Settings updated</h4>
+                                        <p><i class="material-icons">access_time</i> Yesterday</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="footer"><a href="javascript:void(0);">View All Notifications</a></li>
+                </ul>
+            </li>
+            <!-- #END# Notifications -->
+            <!-- Tasks -->
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"
+                                    role="button"><i class="zmdi zmdi-flag"></i><span class="label-count">9</span> </a>
+                <ul class="dropdown-menu">
+                    <li class="header">TASKS</li>
+                    <li class="body">
+                        <ul class="menu tasks">
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <h4> Task 1 <small>32%</small></h4>
+                                    <div class="progress">
+                                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85"
+                                             class="progress-bar bg-pink" role="progressbar" style="width: 32%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <h4>Task 2 <small>45%</small></h4>
+                                    <div class="progress">
+                                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85"
+                                             class="progress-bar bg-cyan" role="progressbar" style="width: 45%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <h4>Task 3 <small>54%</small></h4>
+                                    <div class="progress">
+                                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85"
+                                             class="progress-bar bg-teal" role="progressbar" style="width: 54%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <h4> Task 4 <small>65%</small></h4>
+                                    <div class="progress">
+                                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85"
+                                             class="progress-bar bg-orange" role="progressbar" style="width: 65%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="footer"><a href="javascript:void(0);">View All Tasks</a></li>
+                </ul>
+            </li>
+            <!-- #END# Tasks -->
+            <li><a class="js-right-sidebar" data-close="true" href="javascript:void(0);"><i
+                    class="zmdi zmdi-settings"></i></a></li>
+
+
+            <li><a href="sign-in.html" title="sign out"><i class="zmdi zmdi-sign-in"></i></a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<section>
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="leftsidebar">
+
+        <!-- User Info -->
+        <div class="user-info">
+            <div class="d-flex flex-column align-items-center text-center">
+
+                <img alt="Reception" class="rounded-circle p-1 bg-cyan"
+                     src="{% static 'common/images/random-avatar7.jpg' %}" width="100">
+                <div class="admin-action-info">
+                    <h3 class="mt-2">Welcome</h3>
+                    {%if user.gender == "Male" %}
+
+                    <h3> Mr. {{ user.first_name }} {{ user.last_name }}</h3>
+
+                    {%else%}
+
+
+                    <h3>Mme. {{ user.first_name }} {{ user.last_name }}</h3>
+
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu -->
+        <div class="menu" style="overflow: hidden;">
+            <ul class="nav nav-tabs nav-pills d-flex flex-column   list">
+
+                <li class="nav-item active"><a class="btn-link tab" data-toggle="tab" href="#home"><i
+                        class="zmdi zmdi-home"></i><span>Home</span></a></li>
+                <li class="nav-item"><a class="btn-link tab" data-toggle="tab" href="#patients"><i
+                        class="zmdi zmdi-airline-seat-recline-extra"></i><span>Patients</span></a></li>
+                <li class="nav-item"><a class="btn-link tab" data-toggle="tab" href="#appointments"><i
+                        class="zmdi zmdi-group"></i><span>Appointments</span></a></li>
+                <li class="nav-item"><a class="btn-link tab" data-toggle="tab" href="#hospitalisations"><i
+                        class="zmdi zmdi-group"></i><span>Hospitalisations</span></a>
+                </li>
+                <li class="nav-item"><a class="btn-link tab" data-toggle="tab" href="#staff"><i
+                        class="zmdi zmdi-accounts"></i><span>Medical Staff</span></a>
+                </li>
+                <li class="nav-item"><a class="btn-link tab" data-toggle="tab" href="#help"><i
+                        class="zmdi zmdi-help"></i><span>Help Center</span></a>
+                </li>
+            </ul>
+        </div>
+        <!-- #Menu -->
+    </aside>
+
+    <!-- Right Sidebar -->
+    <aside class="right-sidebar" id="rightsidebar">
+        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#skins">Skins</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#chat">Chat</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane in active in active" id="skins" role="tabpanel">
+                <ul class="demo-choose-skin">
+                    <li data-theme="red">
+                        <div class="red"></div>
+                        <span>Red</span></li>
+                    <li data-theme="purple">
+                        <div class="purple"></div>
+                        <span>Purple</span></li>
+                    <li data-theme="blue">
+                        <div class="blue"></div>
+                        <span>Blue</span></li>
+                    <li class="active" data-theme="cyan">
+                        <div class="cyan"></div>
+                        <span>Cyan</span></li>
+                    <li data-theme="green">
+                        <div class="green"></div>
+                        <span>Green</span></li>
+                    <li data-theme="deep-orange">
+                        <div class="deep-orange"></div>
+                        <span>Deep Orange</span></li>
+                    <li data-theme="blue-grey">
+                        <div class="blue-grey"></div>
+                        <span>Blue Grey</span></li>
+                    <li data-theme="black">
+                        <div class="black"></div>
+                        <span>Black</span></li>
+                    <li data-theme="blush">
+                        <div class="blush"></div>
+                        <span>Blush</span></li>
+                </ul>
+            </div>
+            <div class="tab-pane" id="chat" role="tabpanel">
+                <div class="demo-settings">
+                    <div class="search">
+                        <div class="input-group">
+                            <div class="form-line">
+                                <input autofocus class="form-control" placeholder="Search..." required type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <h6>Recent</h6>
+                    <ul>
+                        <li class="online">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar1.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Haïriya Guidado</span>
+                                    <span class="message">Can you share the</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="online">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar2.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Marin Ngome</span>
+                                    <span class="message">Can you share the</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="online">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar3.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Christian Teubou</span>
+                                    <span class="message">Ready for the meeti</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <h6>Contacts</h6>
+                    <ul class="contacts_list">
+                        <li class="offline">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar4.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Bernabe Batchakui</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="online">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar1.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Christian Teubou</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="offline">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar2.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Marie Chana</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+</section>
+
+
+<div class="color-bg-custom"></div>
+
+
+<div class="main">
+
+    <div class="tab-content">
+
+        <div class="tab-pane active" id="home">
+            <h6 class="topbar">Reception > Home</h6>
+            <hr>
+            <div class="row">
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Patients Count
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{stat.patients}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Hospitalisations
+                                    </div>
+
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{room_stat.total_busybeds}} /{{room_stat.total_beds}} ({{ room_stat.percent }} %)</div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="progress progress-sm mr-2">
+                                                <div aria-valuemax="100" aria-valuemin="0"
+                                                     aria-valuenow="{{ room_stat.percent }}" class="progress-bar bg-info" role="progressbar"
+                                                     style="width: {{ room_stat.percent }}%"></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Appointments
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{stat.appointments}}</div>
+
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Not Read Messages
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
+                                                 id="messageCount"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-xl">
+                    <div class="card shadow mb-4">
+                        <!-- Card Header -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Messages</h6>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body messages">
+
+                            <div class="table-responsive">
+                                <table class="table widget-26">
+                                    <tbody id="messages_list">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="tab-pane" id="patients">
+            <div class="row">
+
+                <span class="font-weight-bold text-gray-800 ml-3">Reception > Patients</span>
+
+                <form class="search-form">
+                    <div class="row ">
+                        <div class="col-lg-10 col-md-6 col-sm-12 p-0">
+                            <input class="form-control" name="search" placeholder="Search..." type="text">
+                        </div>
+                        <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                            <button class="btn btn-base" type="submit">
+                                <svg class="feather feather-search" fill="none" height="24" stroke="currentColor"
+                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                     width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+
+            <div class="container mt-1" >
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-margin">
+                            <div class="card-body">
+                                <div class="row search-body">
+                                    <div class="col-lg-12">
+                                        <div class="search-result">
+                                            <div class="result-header">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="result-actions">
+                                                            <div class="result-sorting"></div>
+                                                            <div class="result-views">
+                                                                <button class="btn mb-0 font-weight-bold text-gray-800"
+                                                                        data-target="#addModal" data-toggle="modal">
+                                                                    ADD
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="result-body" style="">
+                                                <div class="table-responsive" style="overflow: auto; height:  370px;"
+                                                     >
+                                                    <table class="table widget-26" >
+                                                        <thead>
+
+                                                        <th>Name</th>
+                                                        <th>Location</th>
+                                                        <th>Gender</th>
+                                                        <th>Condition</th>
+                                                        <th>Action</th>
+                                                        </thead>
+                                                        <tbody id="patients_list" >
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="tab-pane" id="hospitalisations">
+            <div class="row">
+
+                <span class="font-weight-bold text-gray-800 ml-3">Reception > Hospitalisations</span>
+
+
+                <form class="search-form">
+                    <div class="row ">
+                        <div class="col-lg-10 col-md-6 col-sm-12 p-0">
+                            <input class="form-control" id="search" name="search" placeholder="Search..." type="text">
+                        </div>
+                        <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                            <button class="btn btn-base" type="submit">
+                                <svg class="feather feather-search" fill="none" height="24" stroke="currentColor"
+                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                     width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-margin">
+                            <div class="card-body">
+                                <div class="row search-body">
+                                    <div class="col-lg-12">
+                                        <div class="search-result">
+                                            <div class="result-body" style="overflow: auto; height: 250px;">
+                                                <div class="table-responsive">
+                                                    <table class="table widget-26">
+                                                        <thead>
+                                                        <th>Room Label</th>
+                                                        <th>Bed Label</th>
+                                                        <th>Patient</th>
+                                                        <th>Date</th>
+                                                        <th>Action</th>
+                                                        </thead>
+                                                        <tbody id="hosp_list">
+                                                        {% for hosp in hospitalisations %}
+
+                                                        {% if hosp.isActive %}
+                                                        <tr>
+                                                            <td>
+
+                                                                {% for room in rooms %}
+
+
+                                                                {% if room.pk == hosp.idRoom.pk %}
+
+                                                                {{room.roomLabel}}
+
+                                                                {% endif %}
+
+                                                                {% endfor %}
+
+                                                            </td>
+                                                            <td>
+                                                                {{hosp.bedLabel}}
+                                                            </td>
+                                                            <td>
+                                                                {{hosp.idPatient}}
+                                                            </td>
+                                                            <td>
+                                                                {{hosp.atTime}}, {{hosp.atDate}}
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-link text-warning removeHospitalisation"
+                                                                        data-whatever={{hosp.pk}}
+                                                                >Leave
+                                                                </button>
+                                                            </td>
+
+                                                        </tr>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <div class="tab-pane" id="appointments">
+            <h6>Reception > Appointments</h6>
+
+            <div class="result-body mt-1" style="overflow: auto; height: calc(100% -100px) ;">
+                <div class="table-responsive">
+                    <table class="table widget-26">
+
+                                                        <thead>
+
+                                                        <th>Date</th>
+                                                        <th>Reason</th>
+                                                        <th>Requirements</th>
+                                                        <th>Action</th>
+                                                        </thead>
+                        <tbody id="appointment_list">
+                        {% for app in appointments %}
+
+                        <tr>
+                            <td>{{app.atDate}}</td>
+                            <td>{{app.reason}}</td>
+                            <td>{{app.requirements}}</td>
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="tab-pane" id="staff">
+            <span>Reception > Medical Staff</span>
+
+            <form class="search-form">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <div class="col-lg-10 col-md-6 col-sm-12 p-0">
+                        <input class="form-control h-8" name="search" placeholder="Search..." type="text">
+                    </div>
+                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                        <button class="btn btn-base" type="submit">
+                            <svg class="feather feather-search" fill="none" height="24" stroke="currentColor"
+                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                 width="24" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="table-responsive">
+
+                <table class="table table-striped">
+                    <thead>
+                    <th>N°</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>cniNumber</th>
+                    </thead>
+                    <tbody>
+
+                    {%for r in roles%}
+
+                    {%for staff in staff_list%}
+                    {% if staff.role == r %}
+                    <tr>
+                        <td></td>
+                        <td>{{staff.username}}</td>
+                        <td>
+                            {% if staff.gender == "Male" %}<span>Mr. </span>{%endif%}
+                            {% if staff.gender == "Female" %}<span>Mme. </span>{%endif%}
+                            <span>{{staff.first_name}}</span>
+                            <span>{{staff.last_name}}</span>
+                        </td>
+
+                        <td>{{staff.gender}}</td>
+                        <td>{{staff.email}}</td>
+                        <td>{{staff.role}}</td>
+                        <td>{{staff.cniNumber}}</td>
+                    </tr>
+                    {%endif%}
+                    {%endfor%}
+
+                    {%endfor%}
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+        <div class="tab-pane" id="help">
+            <h6>Reception > Help Center</h6>
+            <hr>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="chatModal" class="  modal fade"  style="overflow:hidden; " id="chatModal"
+     role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-xl modal-fullscreen-xxxl-down" role="dialog">
+        <div class="modal-content mh-100" style="height: 600px; overflow:hidden;">
+            <div class="modal-header bg-cyan mt-0 mb-0 ml-0 mr-0 ">
+                <h5 class="modal-title" id="exampleModalLabel">Chat</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body  mt-0 mb-0 ml-0 mr-0 chat-b" style="overflow:hidden;  background-color: #f2f2f2;">
+                <div class="row mt-0 mb-0 ml-0 mr-0 ">
+                  <div class="col-md-6 col-lg-2 col-xl-4 mb-md-0">
+
+                    <h5 class="font-weight-bold mb-1 text-center text-lg-start">Member & Group</h5>
+
+                    <div class="card ">
+                      <div class="card-body">
+
+                        <ul class="list-unstyled pb-5" style="height: 500px;overflow:scroll; color: #68CBD7;">
+                          <li class="p-2 border-bottom" style="background-color: #eee;">
+                            <a href="#!" class="d-flex justify-content-between">
+                              <div class="d-flex flex-row">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-8.webp" alt="avatar"
+                                  class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                                <div class="pt-2 ml-3">
+                                  <p class="fw-bold mb-0">John Doe</p>
+                                  <p class="md text-muted mt-2">Hello, Are you there?</p>
+                                </div>
+                              </div>
+                              <div class="pt-1">
+                                <span class="badge bg-danger float-end">1</span>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="p-2 border-bottom">
+                            <a href="#!" class="d-flex justify-content-between">
+                              <div class="d-flex flex-row">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-1.webp" alt="avatar"
+                                  class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                                <div class="pt-1">
+                                  <p class="fw-bold mb-0">Danny Smith</p>
+                                  <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="p-2 border-bottom">
+                            <a href="#!" class="d-flex justify-content-between">
+                              <div class="d-flex flex-row">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-2.webp" alt="avatar"
+                                  class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                                <div class="pt-1">
+                                  <p class="fw-bold mb-0">Alex Steward</p>
+                                  <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="p-2 border-bottom">
+                            <a href="#!" class="d-flex justify-content-between">
+                              <div class="d-flex flex-row">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-3.webp" alt="avatar"
+                                  class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                                <div class="pt-1">
+                                  <p class="fw-bold mb-0">Ashley Olsen</p>
+                                  <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="p-2 border-bottom">
+                            <a href="#!" class="d-flex justify-content-between">
+                              <div class="d-flex flex-row">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-4.webp" alt="avatar"
+                                  class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                                <div class="pt-1">
+                                  <p class="fw-bold mb-0">Kate Moss</p>
+                                  <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="p-2 border-bottom">
+                            <a href="#!" class="d-flex justify-content-between">
+                              <div class="d-flex flex-row">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" alt="avatar"
+                                  class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                                <div class="pt-1">
+                                  <p class="fw-bold mb-0">Lara Croft</p>
+                                  <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li class="p-2 mb-5">
+                            <a href="#!" class="d-flex justify-content-between">
+                              <div class="d-flex flex-row">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
+                                  class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="60">
+                                <div class="pt-1">
+                                  <p class="fw-bold mb-0">Brad Pitt</p>
+                                  <p class="small text-muted">Lorem ipsum dolor sit.</p>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-md-6 col-lg-10 col-xl-8">
+
+                    <ul class="list-unstyled pt-2 " style="height: 350px;overflow:auto; color: #93918f;  background-color: #f7f7f7;">
+
+
+                        <li class="d-flex justify-content-between mb-4">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
+                          class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+                        <div class="card">
+                          <div class="card-header d-flex justify-content-between p-3">
+                            <p class="fw-bold mb-0">Brad Pitt</p>
+                            <p class="text-muted small mb-0"><i class="far fa-clock"></i> 12 mins ago</p>
+                          </div>
+                          <div class="card-body">
+                            <p class="mb-0">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                              labore et dolore magna aliqua.
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="d-flex justify-content-between mb-4">
+                        <div class="card w-100">
+                          <div class="card-header d-flex justify-content-between p-3">
+                            <p class="fw-bold mb-0">Lara Croft</p>
+                            <p class="text-muted small mb-0"><i class="far fa-clock"></i> 13 mins ago</p>
+                          </div>
+                          <div class="card-body">
+                            <p class="mb-0">
+                              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                              laudantium.
+                            </p>
+                          </div>
+                        </div>
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" alt="avatar"
+                          class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
+                      </li>
+                      <li class="d-flex justify-content-between mb-4">
+                        <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar"
+                          class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+                        <div class="card">
+                          <div class="card-header d-flex justify-content-between p-3">
+                            <p class="fw-bold mb-0">Brad Pitt</p>
+                            <p class="text-muted small mb-0"><i class="far fa-clock"></i> 10 mins ago</p>
+                          </div>
+                          <div class="card-body">
+                            <p class="mb-0">
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                              labore et dolore magna aliqua.
+                            </p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+
+                        <div class="bg-white mb-2 form-outline">
+                          <textarea class="form-control" placeholder="Message..." id="textAreaExample2" rows="3"></textarea>
+                        </div>
+                      <button type="button" class="btn bg-cyan btn-rounded float-end">Send</button>
+
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer bg-cyan">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="color-bg-custom modal fade" id="addModal"
+     role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centere color-bg-custom " role="document">
+        <div class="modal-content">
+            <div class="card-header modal-header">
+                <h5 class="modal-title" id="addModalLabel">Add Patients</h5>
+                <button aria-label="Close" class="close closeAddPatient" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <form id="addOnePatient">
+
+                    {%csrf_token%}
+                    <div class="row ">
+                        <div class="col-lg-3 col-md-6 col-sm-12 p-0 ">
+                            <div class="form-group">
+                                <label class="col-form-label" for="recipient-name">CNI Number:</label>
+                                <input class="form-control rounded border border-info p-2"
+                                       name="cniNumber" type="text">
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 m-l-10 p-0">
+
+                            <div class="form-group">
+                                <label class="col-form-label" for="message-text">Gender:</label>
+
+                                <select class="rounded border border-info p-2"
+                                        name="gender"
+                                        style="width: 11.68vw; height: 5.8vh; margin-bottom: 5vh;">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 m-l-10 p-0">
+
+                            <div class="form-group">
+                                <label class="col-form-label" for="message-text">Birth Date:</label>
+                                <input class="form-control rounded border border-info p-2"
+                                       name="birthDate" max={% now "Y-m-d" %}
+                                type="date" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-5 col-md-6 col-sm-12 p-0 ">
+                            <div class="form-group">
+                                <label class="col-form-label" for="recipient-name">First Name:</label>
+                                <input class="form-control rounded border border-info p-2"
+                                       name="firstName" type="text">
+                            </div>
+
+                        </div>
+                        <div class="col-lg-5 col-md-3 col-sm-12 m-l-10 p-0">
+
+                            <div class="form-group">
+                                <label class="col-form-label" for="message-text">Last Name:</label>
+                                <input class="form-control rounded border border-info p-2"
+                                       name="lastName">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-3 col-md-6 col-sm-12 p-0 ">
+                            <div class="form-group">
+                                <label class="col-form-label" for="recipient-name">Phone :</label>
+                                <input class="form-control rounded border border-info p-2"
+                                       name="phoneNumber" type="tel">
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 m-l-10 p-0">
+
+                            <div class="form-group">
+                                <label class="col-form-label" for="message-text">Email :</label>
+                                <input class="form-control rounded border border-info p-2" name="email"
+                                       type="email">
+                            </div>
+
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 m-l-10 p-0">
+
+                            <div class="form-group">
+                                <label class="col-form-label" for="message-text">Address :</label>
+                                <input class="form-control rounded border border-info p-2"
+                                       name="address">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="message-text">Condition :</label>
+                        <select class="rounded border border-info p-2"
+                                name="condition"
+                                style="width: 11.68vw; height: 5.8vh; margin-bottom: 5vh;">
+                            <option value="Critical">Critical</option>
+                            <option value="NoCritical">No Critical</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-danger closeAddPatient" data-dismiss="modal" type="button">
+                            Close
+                        </button>
+                        <input class="btn btn-primary" type="submit" value="Add patient">
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="chatModal" class="  modal fade"  style="overflow:hidden; " id="hatModal"
+     role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog modal-xl modal-fullscreen-xxxl-down" role="dialog">
+        <div class="modal-content mh-100" style="height: 600px; overflow:hidden;">
+            <div class="modal-header bg-cyan mt-0 mb-0 ml-0 mr-0 ">
+                <h5 class="modal-title"  >Chat</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body  mt-0 mb-0 ml-0 mr-0 chat-b" style="overflow:hidden;">
+                  <div class="row app-one">
+                    <div class="col-sm-4 side">
+                      <div class="side-one">
+                        <div class="row heading">
+                          <div class="col-sm-3 col-xs-3 heading-avatar">
+                            <div class="heading-avatar-icon">
+                              <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                            </div>
+                          </div>
+                          <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
+                            <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+                          </div>
+                          <div class="col-sm-2 col-xs-2 heading-compose  pull-right">
+                            <i class="fa fa-comments fa-2x  pull-right" aria-hidden="true"></i>
+                          </div>
+                        </div>
+
+                        <div class="row searchBox">
+                          <div class="col-sm-12 searchBox-inner">
+                            <div class="form-group has-feedback">
+                              <input id="searchText" type="text" class="form-control" name="searchText" placeholder="Search">
+                              <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row sideBar">
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="side-two">
+                        <div class="row newMessage-heading">
+                          <div class="row newMessage-main">
+                            <div class="col-sm-2 col-xs-2 newMessage-back">
+                              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-sm-10 col-xs-10 newMessage-title">
+                              New Chat
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row composeBox">
+                          <div class="col-sm-12 composeBox-inner">
+                            <div class="form-group has-feedback">
+                              <input id="composeText" type="text" class="form-control" name="searchText" placeholder="Search People">
+                              <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row compose-sideBar">
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row sideBar-body">
+                            <div class="col-sm-3 col-xs-3 sideBar-avatar">
+                              <div class="avatar-icon">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png">
+                              </div>
+                            </div>
+                            <div class="col-sm-9 col-xs-9 sideBar-main">
+                              <div class="row">
+                                <div class="col-sm-8 col-xs-8 sideBar-name">
+                                  <span class="name-meta">John Doe
+                                </span>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 pull-right sideBar-time">
+                                  <span class="time-meta pull-right">18:18
+                                </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-8 conversation">
+                      <div class="row heading">
+                        <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
+                          <div class="heading-avatar-icon">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                          </div>
+                        </div>
+                        <div class="col-sm-8 col-xs-7 heading-name">
+                          <a class="heading-name-meta">John Doe
+                          </a>
+                          <span class="heading-online">Online</span>
+                        </div>
+                        <div class="col-sm-1 col-xs-1  heading-dot pull-right">
+                          <i class="fa fa-ellipsis-v fa-2x  pull-right" aria-hidden="true"></i>
+                        </div>
+                      </div>
+
+                      <div class="row message" id="conversation">
+                        <div class="row message-previous">
+                          <div class="col-sm-12 previous">
+                            <a onclick="previous(this)" id="ankitjain28" name="20">
+                            Show Previous Message!
+                            </a>
+                          </div>
+                        </div>
+
+                        <div class="row message-body">
+                          <div class="col-sm-12 message-main-receiver">
+                            <div class="receiver">
+                              <div class="message-text">
+                               Hi, what are you doing?!
+                              </div>
+                              <span class="message-time pull-right">
+                                Sun
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row message-body">
+                          <div class="col-sm-12 message-main-sender">
+                            <div class="sender">
+                              <div class="message-text">
+                                I am doing nothing man!
+                              </div>
+                              <span class="message-time pull-right">
+                                Sun
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row reply">
+                        <div class="col-sm-1 col-xs-1 reply-emojis">
+                          <i class="fa fa-smile-o fa-2x"></i>
+                        </div>
+                        <div class="col-sm-9 col-xs-9 reply-main">
+                          <textarea class="form-control" rows="1" id="comment"></textarea>
+                        </div>
+                        <div class="col-sm-1 col-xs-1 reply-recording">
+                          <i class="fa fa-microphone fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-sm-1 col-xs-1 reply-send">
+                          <i class="fa fa-send fa-2x" aria-hidden="true"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="modal-footer bg-cyan">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="{% static 'reception/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'reception/index.js' %}"></script>
+<script src="{% static 'common/js/bootstrap.min.js' %}"></script>
+
+</body>
+
+
+</html>
+
+

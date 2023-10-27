@@ -1,0 +1,39 @@
+a:link, a:visited{
+    background-color: gray;
+    color: aliceblue;
+    padding: 10px 25px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+a:hover,input[type =reset]:hover,input[type =submit]:hover{
+    background-color: brown;
+    color: black;
+}
+input[type=text]{
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 1px rgb(45, 134, 161);
+    transition: all 1s ease;
+}
+input:focus{
+    border-bottom: solid 1px rgb(29, 4, 84);
+}
+input[type = reset]{
+    background-color: lawngreen;
+    color: black;
+    border-radius: 5px;
+}
+input[type = submit]{
+    background-color: dodgerblue;
+    color: black;
+    border-radius: 5px;
+    margin-right: 50px;
+
+}
+h1{
+    font-size: 45px;
+    font-family: 'Lucida Sans Unicode';
+    color: aqua;
+    text-align: center;
+}

@@ -1,0 +1,103 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+        <div class="block-header">
+            <h2>Updating {{mS.first_name}} </h2>
+        </div>
+        <div class="row clearfix">
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<div class="card">
+					<div class="body">
+						<form method ="post" action="/dashboard/update/{{mS.id}}">
+                            
+                        {%csrf_token%}
+                            <div class="row clearfix">
+                            
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" value = "{{mS.username}}" name="username" placeholder="Username" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" value="{{mS.first_name}}" name="first_name"  placeholder="First Name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                
+                            </div>
+
+                            <div class="row clearfix">
+                            
+                                
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" value="{{mS.last_name}}" name="last_name"  placeholder="Last Name" class="form-control" required >
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" value="{{mS.email}}" name="email" class="form-control" placeholder="Enter Your Email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix">
+                                
+                                <div class="col-sm-3">
+                                    <div class="form-group drop-custum">
+                                        <select name="gender" value="{{mS.gender}}" class="form-control show-tick">
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group drop-custum">
+                                        <select name="role" value ="{{mS.role}}" class="form-control show-tick">
+                                            {%for r in roles%}
+                                                <option value="{{r}}">{{r}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="row clearfix">
+                                
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" value="{{mS.cniNumber}}" name = "cniNumber" class="form-control" placeholder="CNI_number" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-raised g-bg-cyan">Submit</button>
+                                    <button type="reset" class="btn btn-raised">Cancel</button>
+                                </div>
+                                
+                            </div>
+                            
+						</form>
+                    </div>
+				</div>
+			</div>
+		</div>
+        
+{%endblock content%}

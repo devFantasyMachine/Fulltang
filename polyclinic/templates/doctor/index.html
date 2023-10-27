@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>{% block title %} Home{%endblock %} </title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+
+    <link href="{% static 'common/css/main.css' %}" rel="stylesheet"/>
+    <link href="{% static 'reception/style.css' %}" rel="stylesheet"/>
+
+    <link href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'https://fonts.googleapis.com/icon?family=Material+Icons' %}" rel="stylesheet"
+          type="text/css">
+
+    <link href="{% static 'common/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'reception/font-awesome.min.css' %}" rel="stylesheet"/>
+
+    <!-- Custom Css -->
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet"/>
+
+
+</head>
+
+<body class="theme-cyan">
+
+
+
+
+<!-- Page Loader -->
+<!--<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-cyan">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>-->
+<div class="color-bg-custom"></div>
+
+<ul class="mfbc-br mfb-zoomin" data-mfb-toggle="hover" id="f-menu">
+    <li class="mfbc_wrap">
+        <a class="mfbcb-main g-bg-cyan" href="javascript:void(0);">
+            <i class="mfbcm-icon-resting zmdi zmdi-plus"></i>
+            <i class="mfbcm-icon-active zmdi zmdi-close"></i>
+        </a>
+        <ul class="mfbc_list">
+            <li><a class="mfb-child bg-blue" data-mfb-label="Add Patient" data-target="#addModal" data-toggle="modal"
+                   href="#"><i
+                    class="zmdi zmdi-plus mfbc_icon"></i></a></li>
+            <li><a class="mfb-child bg-orange" data-mfb-label="view exams history" href="#"><i
+                    class="zmdi zmdi-calendar mfbc_icon"></i></a></li>
+            <li><a class="mfb-child bg-purple" data-mfb-label="sign-out" href="#"><i
+                    class="zmdi zmdi-sign-in mfbc_icon"></i></a></li>
+            <li><a class="mfb-child bg-blue" data-mfb-label="view exam list" href="#"><i
+                    class="zmdi zmdi-view-list-alt mfbc_icon"></i></a></li>
+            <li><a class="mfb-child bg-orange" data-mfb-label="view exams history" href="#"><i
+                    class="zmdi zmdi-calendar mfbc_icon"></i></a></li>
+        </ul>
+    </li>
+</ul>
+
+
+<!-- Top Bar -->
+<nav class="navbar clearHeader">
+    <div class="col-12">
+        <span class="navbar-brand navbar-left ml-4" style=" ">Fultang Hospital</span>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="mail-inbox.html" title="Go to Inbox"><i class="zmdi zmdi-email"></i></a></li>
+            <li><a href="profile.html" title="Go to Profile"><i class="zmdi zmdi-account"></i></a></li>
+
+            <!-- Notifications -->
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"
+                                    role="button"><i class="zmdi zmdi-notifications"></i> <span
+                    class="label-count">7</span> </a>
+                <ul class="dropdown-menu">
+                    <li class="header">NOTIFICATIONS</li>
+                    <li class="body">
+                        <ul class="menu">
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-light-green"><i class="zmdi zmdi-account-add"></i></div>
+                                    <div class="menu-info">
+                                        <h4>12 new members joined</h4>
+                                        <p><i class="material-icons">access_time</i> 14 mins ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-cyan"><i class="zmdi zmdi-shopping-cart-plus"></i></div>
+                                    <div class="menu-info">
+                                        <h4>4 sales made</h4>
+                                        <p><i class="material-icons">access_time</i> 22 mins ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-red"><i class="zmdi zmdi-delete"></i></div>
+                                    <div class="menu-info">
+                                        <h4><b>Ngome</b> deleted account</h4>
+                                        <p><i class="material-icons">access_time</i> 3 hours ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-orange"><i class="zmdi zmdi-edit"></i></div>
+                                    <div class="menu-info">
+                                        <h4><b>Christian</b> changed name</h4>
+                                        <p><i class="material-icons">access_time</i> 2 hours ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-blue-grey"><i class="zmdi zmdi-comment-alt-text"></i>
+                                    </div>
+                                    <div class="menu-info">
+                                        <h4><b>Alex</b> commented your post</h4>
+                                        <p><i class="material-icons">access_time</i> 4 hours ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-light-green"><i class="zmdi zmdi-refresh-alt"></i></div>
+                                    <div class="menu-info">
+                                        <h4><b>Guidado</b> updated status</h4>
+                                        <p><i class="material-icons">access_time</i> 3 hours ago</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <div class="icon-circle bg-purple"><i class="zmdi zmdi-settings"></i></div>
+                                    <div class="menu-info">
+                                        <h4>Settings updated</h4>
+                                        <p><i class="material-icons">access_time</i> Yesterday</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="footer"><a href="javascript:void(0);">View All Notifications</a></li>
+                </ul>
+            </li>
+            <!-- #END# Notifications -->
+            <!-- Tasks -->
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);"
+                                    role="button"><i class="zmdi zmdi-flag"></i><span class="label-count">9</span> </a>
+                <ul class="dropdown-menu">
+                    <li class="header">TASKS</li>
+                    <li class="body">
+                        <ul class="menu tasks">
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <h4> Task 1 <small>32%</small></h4>
+                                    <div class="progress">
+                                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85"
+                                             class="progress-bar bg-pink" role="progressbar" style="width: 32%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <h4>Task 2 <small>45%</small></h4>
+                                    <div class="progress">
+                                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85"
+                                             class="progress-bar bg-cyan" role="progressbar" style="width: 45%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <h4>Task 3 <small>54%</small></h4>
+                                    <div class="progress">
+                                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85"
+                                             class="progress-bar bg-teal" role="progressbar" style="width: 54%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <h4> Task 4 <small>65%</small></h4>
+                                    <div class="progress">
+                                        <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="85"
+                                             class="progress-bar bg-orange" role="progressbar" style="width: 65%"></div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="footer"><a href="javascript:void(0);">View All Tasks</a></li>
+                </ul>
+            </li>
+            <!-- #END# Tasks -->
+            <li><a class="js-right-sidebar" data-close="true" href="javascript:void(0);"><i
+                    class="zmdi zmdi-settings"></i></a></li>
+            <li><a href="sign-in.html" title="sign out"><i class="zmdi zmdi-sign-in"></i></a></li>
+        </ul>
+    </div>
+</nav>
+
+<section>
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="leftsidebar">
+
+        <!-- User Info -->
+        <div class="user-info">
+            <div class="d-flex flex-column align-items-center text-center">
+
+                <img alt="Reception" class="rounded-circle p-1 bg-cyan"
+                     src="{% static 'common/images/random-avatar7.jpg' %}" width="100">
+                <div class="admin-action-info">
+                    <h3 class="mt-2">Welcome</h3>
+                    <h3> Dr. {{ user.first_name }} {{ user.last_name }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu -->
+        <div class="menu" style="overflow: hidden;">
+            <ul class="nav nav-tabs nav-pills d-flex flex-column   list">
+
+                <li class="nav-item active"><a class="btn-link tab" data-toggle="tab" href="#home"><i
+                        class="zmdi zmdi-home"></i><span>Home</span></a></li>
+                <li class="nav-item"><a class="btn-link tab" data-toggle="tab" href="#patients"><i
+                        class="zmdi zmdi-airline-seat-recline-extra"></i><span>My Patients</span></a></li>
+                <li class="nav-item"><a class="btn-link tab" data-toggle="tab" href="#appointments"><i
+                        class="zmdi zmdi-group"></i><span>Appointments</span></a></li>
+                 <li class="nav-item"><a class="btn-link tab" data-toggle="tab" href="#exams"><i
+                        class="zmdi zmdi-group"></i><span>Exams</span></a>
+                </li>
+                <li class="nav-item"><a class="btn-link tab" data-toggle="tab" href="#staff"><i
+                        class="zmdi zmdi-accounts"></i><span>Medical Staff</span></a>
+                </li>
+                <li class="nav-item"><a class="btn-link tab" data-toggle="tab" href="#help"><i
+                        class="zmdi zmdi-help"></i><span>Help Center</span></a>
+                </li>
+            </ul>
+        </div>
+        <!-- #Menu -->
+    </aside>
+
+    <!-- Right Sidebar -->
+    <aside class="right-sidebar" id="rightsidebar">
+        <ul class="nav nav-tabs tab-nav-right" role="tablist">
+            <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#skins">Skins</a></li>
+            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#chat">Chat</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane in active in active" id="skins" role="tabpanel">
+                <ul class="demo-choose-skin">
+                    <li data-theme="red">
+                        <div class="red"></div>
+                        <span>Red</span></li>
+                    <li data-theme="purple">
+                        <div class="purple"></div>
+                        <span>Purple</span></li>
+                    <li data-theme="blue">
+                        <div class="blue"></div>
+                        <span>Blue</span></li>
+                    <li class="active" data-theme="cyan">
+                        <div class="cyan"></div>
+                        <span>Cyan</span></li>
+                    <li data-theme="green">
+                        <div class="green"></div>
+                        <span>Green</span></li>
+                    <li data-theme="deep-orange">
+                        <div class="deep-orange"></div>
+                        <span>Deep Orange</span></li>
+                    <li data-theme="blue-grey">
+                        <div class="blue-grey"></div>
+                        <span>Blue Grey</span></li>
+                    <li data-theme="black">
+                        <div class="black"></div>
+                        <span>Black</span></li>
+                    <li data-theme="blush">
+                        <div class="blush"></div>
+                        <span>Blush</span></li>
+                </ul>
+            </div>
+            <div class="tab-pane" id="chat" role="tabpanel">
+                <div class="demo-settings">
+                    <div class="search">
+                        <div class="input-group">
+                            <div class="form-line">
+                                <input autofocus class="form-control" placeholder="Search..." required type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <h6>Recent</h6>
+                    <ul>
+                        <li class="online">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar1.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Haïriya Guidado</span>
+                                    <span class="message">Can you share the</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="online">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar2.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Marin Ngome</span>
+                                    <span class="message">Can you share the</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="online">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar3.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Christian Teubou</span>
+                                    <span class="message">Ready for the meeti</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <h6>Contacts</h6>
+                    <ul class="contacts_list">
+                        <li class="offline">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar4.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Bernabe Batchakui</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="online">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar1.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Christian Teubou</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="offline">
+                            <div class="media">
+                                <a href="javascript:void(0);"><img alt=""
+                                                                   class="media-object "
+                                                                   src="assets/images/xs/avatar2.jpg"></a>
+                                <div class="media-body">
+                                    <span class="name">Marie Chana</span>
+                                    <span class="badge badge-outline status"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+</section>
+
+
+
+<div class="main">
+    <div class="tab-content">
+        <div class="tab-pane active" id="home">
+            <h6 class="topbar">Reception > Home</h6>
+            <hr>
+            <div class="row">
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Patients Count
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{stat.patients}}</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                        Appointments
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{stat.appointments}}</div>
+
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Exams
+                                    </div>
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ examsResult.count }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="tab-pane" id="exams">
+            <h6>Reception > Exams</h6>
+
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-margin">
+                            <div class="card-body">
+                                <div class="row search-body">
+                                    <div class="col-lg-12">
+                                        <div class="search-result">
+                                            <div class="result-body" style="overflow: auto;">
+                                                <div class="table-responsive">
+                                                    <h6>All Result</h6>
+                                                    <table class="table widget-26">
+                                                        <thead>
+
+                                                        <th>Patient Name</th>
+                                                        <th>Date </th>
+                                                        <th>Time</th>
+                                                        <th>Notes</th>
+                                                        <th>By</th>
+                                                        </thead>
+
+                                                        <tbody>
+                                                        {% for result in examsResult %}
+
+                                                        <tr>
+                                                            <td>{{result.idPatient}}</td>
+                                                            <td>{{result.addDate}}</td>
+                                                            <td> {{result.addTime}}</td>
+                                                            <td> {{result.notes}}</td>
+                                                             {% for staff in staffs %}
+
+                                                            {% if staff.pk == result.idMedicalStaff.pk %}
+                                                            <td>{{staff.first_name}} {{staff.last_name}}</td>
+
+                                                            {% endif %}
+
+                                                            {% endfor %}
+                                                        </tr>
+
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <h6 class="mt-4">All Request</h6>
+                                                    <table class="table widget-26">
+                                                        <thead>
+                                                        <th>Patient Name</th>
+                                                         <th>Exam </th>
+                                                        <th>Date </th>
+                                                        <th>Time</th>
+                                                        <th>Details</th>
+                                                        <th>Status</th>
+                                                        <th>Notes</th>
+                                                        </thead>
+                                                        <tbody>
+                                                        {% for r in examRequest %}
+                                                        <tr>
+                                                            <td>{{r.idPatient}}</td>
+                                                            {% for exam in exams %}
+
+                                                            {% if exam.pk == r.idExam.pk %}
+                                                            <td>{{exam.examName}}</td>
+
+                                                            {% endif %}
+
+                                                            {% endfor %}
+
+                                                            <td>{{r.addDate}}</td>
+                                                            <td> {{r.addTime}}</td>
+                                                            <td> {{r.examDetails}}</td>
+                                                            <td> {{r.examStatus}}</td>
+                                                            <td> {{r.notes}}</td>
+                                                        </tr>
+
+                                                        {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="tab-pane" id="patients">
+            <div class="row">
+
+                <h6 class="ml-3">Reception > Patients</h6>
+
+                <form class="search-form">
+                    <div class="row ">
+                        <div class="col-lg-10 col-md-6 col-sm-12 p-0">
+                            <input class="form-control" name="search" placeholder="Search..." type="text">
+                        </div>
+                        <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                            <button class="btn btn-base" type="submit">
+                                <svg class="feather feather-search" fill="none" height="24" stroke="currentColor"
+                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                     width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+
+            <div class="container mt-1" >
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card card-margin">
+                            <div class="card-body">
+                                <div class="row search-body">
+                                    <div class="col-lg-12">
+                                        <div class="search-result">
+
+                                            <div class="result-body" style="">
+                                                <div class="table-responsive" style="overflow: auto; height:  370px;"
+                                                     >
+                                                    <table class="table widget-26" >
+                                                        <thead>
+
+                                                        <th>Name</th>
+                                                        <th>Location</th>
+                                                        <th>Gender</th>
+                                                        <th>Condition</th>
+                                                        <th>Action</th>
+                                                        </thead>
+                                                        <tbody id="patients_list" >
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="tab-pane" id="appointments">
+            <h6>Reception > Appointments</h6>
+
+            <div class="result-body mt-1" style="overflow: auto; height: calc(100% -100px) ;">
+                <div class="table-responsive">
+                    <table class="table widget-26">
+                        <thead>
+                        <th>Date</th>
+                        <th>Reason</th>
+                        <th>Requirements</th>
+                        <th>Action</th>
+                        </thead>
+                        <tbody id="appointment_list">
+                        {% for app in appointments %}
+
+                        <tr>
+                            <td>{{app.atDate}}</td>
+                            <td>{{app.reason}}</td>
+                            <td>{{app.requirements}}</td>
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="tab-pane" id="staff">
+            <h6>Reception > Medical Staff</h6>
+
+            <form class="search-form">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <div class="col-lg-10 col-md-6 col-sm-12 p-0">
+                        <input class="form-control h-8" name="search" placeholder="Search..." type="text">
+                    </div>
+                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                        <button class="btn btn-base" type="submit">
+                            <svg class="feather feather-search" fill="none" height="24" stroke="currentColor"
+                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                                 width="24" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="table-responsive">
+
+                <table class="table table-striped">
+                    <thead>
+                    <th>N°</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>cniNumber</th>
+                    </thead>
+                    <tbody>
+
+                    {%for r in roles%}
+
+                    {%for staff in staffs%}
+                    {% if staff.role == r %}
+                    <tr>
+                        <td></td>
+                        <td>{{staff.username}}</td>
+                        <td>
+                            {% if staff.gender == "Male" %}<span>Mr. </span>{%endif%}
+                            {% if staff.gender == "Female" %}<span>Mme. </span>{%endif%}
+                            <span>{{staff.first_name}}</span>
+                            <span>{{staff.last_name}}</span>
+                        </td>
+
+                        <td>{{staff.gender}}</td>
+                        <td>{{staff.email}}</td>
+                        <td>{{staff.role}}</td>
+                        <td>{{staff.cniNumber}}</td>
+                    </tr>
+                    {%endif%}
+                    {%endfor%}
+
+                    {%endfor%}
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+        <div class="tab-pane" id="help">
+            <h6>Reception > Help Center</h6>
+            <hr>
+
+        </div>
+    </div>
+</div>
+
+
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal" role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Patients details</h5>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="col-form-label" for="recipient-name">Recipient:</label>
+                        <input class="form-control" id="recipient-name" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="message-text">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" type="button">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static 'reception/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'doctor/doctor.js' %}"></script>
+<script src="{% static 'common/js/bootstrap.min.js' %}"></script>
+
+</body>
+
+<!-- Mirrored from thememakker.com/templates/swift/hospital/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 20 Nov 2021 08:11:50 GMT -->
+</html>

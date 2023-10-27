@@ -1,0 +1,93 @@
+{% extends 'dashboard/base_dashboard.html' %}
+{% load static %}
+
+{% block content %}
+<div class="row clearfix">
+	<div class="text"> <h1>List of all Staff members</h1> </div>
+    
+</div>
+<div class="row clearfix">
+    <div class="text"> <label> Search a Staff by his username</label></div>
+    
+</div>
+<form class="search-form" method ="post" action="staff_list">
+
+    {%csrf_token%}
+            <div class="row ml-2 ">
+                
+                <div class="col-lg-5 col-md-6 col-sm-12 p-0 ml-3">
+                    <input type="text" name="username" value="{{select_name}}" placeholder="Username" class="form-control" required>
+                </div>
+                <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                    <button class="btn btn-base" type="submit">
+                        <svg class="feather feather-search" fill="none" height="24"
+                             stroke="currentColor"
+                             stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                             viewBox="0 0 24 24"
+                             width="24" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" x2="16.65" y1="21" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+    </form>
+<br>
+<div class="body">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <th>N°</th>
+                <th>Username</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>cniNumber</th>
+                <th>Action</th>              
+            </thead>
+            <tbody>
+                {%for staff in staff_list%}
+                <tr>
+                    <td> </td>
+                    <td>{{staff.username}}</td>
+                    <td>{{staff.first_name}}</td>
+                    <td>{{staff.last_name}}</td>
+                    <td>{{staff.gender}}</td>
+                    <td>{{staff.email}}</td>
+                    <td>{{staff.role}}</td>
+                    <td>{{staff.cniNumber}}</td>
+                
+                    <td>
+                        <a onclick="return confirm('Are you sure you want to dismiss this member?')"
+                         class="btn btn-danger"
+                         href="/dashboard/delete/{{staff.id}}">Delete</a>
+                        
+                        <a class="btn btn-primary" href ="/dashboard/edit/{{staff.id}}">Update</a>
+
+                    </td>
+                </tr>
+                {%endfor%}                
+            </tbody>
+        </table>
+    </div>
+</div>
+<div style = "text-align: center;">
+	<span class="page">
+        {% if staff_list.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ staff_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ staff_list.number }} of {{ staff_list.paginator.num_pages }}.
+        </span>
+
+        {% if staff_list.has_next %}
+            <a href="?page={{ staff_list.next_page_number }}&&name={{select_name}}">next</a>
+            <a href="?page={{ staff_list.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{%endblock content%}
